@@ -1,4 +1,5 @@
 # vue_ts_uikit_demo
+demo of uikit(base on vue2.0 + ts)
 
 ## Project setup
 ```

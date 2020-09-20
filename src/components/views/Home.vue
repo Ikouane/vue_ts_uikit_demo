@@ -27,18 +27,31 @@
 
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+// import { Component, Vue } from "vue-property-decorator";
+import { defineComponent } from "vue";
 import UIButton from "@/components/UIKit/UIButton.vue";
 import UIModal from "@/components/UIKit/UIModal.vue";
 
-@Component({
-  components: { UIButton, UIModal },
-})
-export default class Home extends Vue {
-  private ClickMe(event: MouseEvent) {
-    console.log(`按钮被点击了,${event}`);
-  }
-}
+// @Component({
+//   components: { UIButton, UIModal },
+// })
+// export default class Home extends Vue {
+//   private ClickMe(event: MouseEvent) {
+//     console.log(`按钮被点击了,${event}`);
+//   }
+// }
+export default defineComponent({
+  name: "Home",
+  components: {
+    UIButton,
+    // UIModal,
+  },
+  methods: {
+    ClickMe(event: MouseEvent) {
+      console.log(`按钮被点击了`, event);
+    },
+  },
+});
 </script>
 
 

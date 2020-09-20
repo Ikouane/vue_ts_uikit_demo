@@ -1,7 +1,8 @@
 <template>
   <button
     class="ui-btn"
-    @click="onClickBtn"
+    @click.stop="onClickBtn"
+    :disabled="disabled"
     :class="{
       'ui-btn-xsmall': xsmall,
       'ui-btn-small': small,
@@ -21,41 +22,75 @@
   </button>
 </template>
 <script lang="ts">
-import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+// import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+import { defineComponent } from "vue";
 
-@Component
-export default class UIButton extends Vue {
-  @Prop(Boolean) private large: boolean | undefined;
-  @Prop(Boolean) private xlarge: boolean | undefined;
-  @Prop(Boolean) private small: boolean | undefined;
-  @Prop(Boolean) private xsmall: boolean | undefined;
-  @Prop(Boolean) private tile: boolean | undefined;
-  @Prop(Boolean) private rounded: boolean | undefined;
-  @Prop(Boolean) private circle: boolean | undefined;
-  @Prop(Boolean) private disabled: boolean | undefined;
-  @Prop(String) private color: string | undefined;
-  @Prop(String) private fontColor: string | undefined;
+// @Component
+// export default class UIButton extends Vue {
+//   @Prop(Boolean) private large: boolean | undefined;
+//   @Prop(Boolean) private xlarge: boolean | undefined;
+//   @Prop(Boolean) private small: boolean | undefined;
+//   @Prop(Boolean) private xsmall: boolean | undefined;
+//   @Prop(Boolean) private tile: boolean | undefined;
+//   @Prop(Boolean) private rounded: boolean | undefined;
+//   @Prop(Boolean) private circle: boolean | undefined;
+//   @Prop(Boolean) private disabled: boolean | undefined;
+//   @Prop(String) private color: string | undefined;
+//   @Prop(String) private fontColor: string | undefined;
 
-  @Emit("click")
-  private emitClickEvent(event: MouseEvent) {
-    //console.log("事件处理函数", event);
-  }
+//   @Emit("click")
+//   private emitClickEvent(event: MouseEvent) {
+//     //console.log("事件处理函数", event);
+//   }
 
-  private onClickBtn(event: MouseEvent) {
-    if (!this.disabled) this.emitClickEvent(event);
-    else console.log("按钮已禁用");
-  }
+//   private onClickBtn(event: MouseEvent) {
+//     if (!this.disabled) this.emitClickEvent(event);
+//     else console.log("按钮已禁用");
+//   }
 
-  get TintColor() {
-    if (this.color) return this.color;
-    else return "#2d8cf0";
-  }
+//   get TintColor() {
+//     if (this.color) return this.color;
+//     else return "#2d8cf0";
+//   }
 
-  get FontColor() {
-    if (this.fontColor) return this.fontColor;
-    else return "#17233D";
-  }
-}
+//   get FontColor() {
+//     if (this.fontColor) return this.fontColor;
+//     else return "#17233D";
+//   }
+// }
+export default defineComponent({
+  props: {
+    large: Boolean,
+    xlarge: Boolean,
+    small: Boolean,
+    xsmall: Boolean,
+    tile: Boolean,
+    rounded: Boolean,
+    circle: Boolean,
+    disabled: Boolean,
+    color: String,
+    fontColor: String,
+  },
+  computed: {
+    TintColor(): string {
+      if (this.color) return this.color;
+      else return "#2d8cf0";
+    },
+
+    FontColor(): string {
+      if (this.fontColor) return this.fontColor;
+      else return "#17233D";
+    },
+  },
+  methods: {
+    onClickBtn(event: MouseEvent) {
+      // if (!this.disabled) console.log("按钮被点击", event);
+      // else {
+      //   console.log("按钮已禁用", event);
+      // }
+    },
+  },
+});
 </script>
 <style lang="stylus" scoped>
 resize(minWidth, height, paddingLR, fontSize) {

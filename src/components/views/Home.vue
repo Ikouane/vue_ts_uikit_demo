@@ -1,10 +1,8 @@
 <template>
   <div>
-    Home
     <div class="flex">
-      <div class="modal-group">
-        <!-- <UIModal>你好</UIModal> -->
-      </div>
+      <div class="modal-group"></div>
+      <div class="group-title">按钮</div>
       <div class="btn-group">
         <UIButton @click="ClickMe" class="btn" xsmall>超小</UIButton>
         <UIButton @click="ClickMe" class="btn" small>小</UIButton>
